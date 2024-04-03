@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  giropops-senhas:
+    image: "giropops-senhas:1.3"
+    ports: 
+      - "5000:5000"
+    depends_on:
+      - redis
+    environment:
+       - REDIS_HOST=redis
+    networks:
+      - rede
+  redis:
+    image: "cgr.dev/chainguard/redis"
+    ports:
+      - "6379:6379"
+    networks:
+      - rede
+
+networks:
+  rede:
+    driver: bridge
