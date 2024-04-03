@@ -9,9 +9,9 @@ Neste repositorio irá ficar todo o material de estudo, anotações e laboratori
 
 
 Todo conteudo será separados por conteudos e por dias dentro dos conteúdos 
-##Descomplicando Docker
-##Descomplicando Kubernetes
-##GitOps e Argo CD
+## Descomplicando Docker
+## Descomplicando Kubernetes
+## GitOps e Argo CD
 
 
 
