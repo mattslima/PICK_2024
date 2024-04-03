@@ -1,0 +1,19 @@
+FROM cgr.dev/chainguard/python:latest-dev as buildando 
+WORKDIR /app
+COPY requirements.txt . 
+RUN python3 -m venv .venv
+RUN pip install Flask
+RUN pip install --no-cache-dir -r requirements.txt --user
+
+
+FROM cgr.dev/chainguard/python:latest
+WORKDIR app/
+COPY .venv/ .venv/bin/active
+COPY --from=buildando /home/nonroot/.local/lib/python3.12/site-packages /home/nonroot/.local/lib/python3.12/site-packages
+
+COPY --from=builder /.venv/bin /home/nonroot/.local/bin
+ENV PATH=PATH:/home/nonroot/.local/bin
+
+COPY templates templates/
+COPY static static/
+ENTRYPOINT ["flask", "run", "--host=0.0.0.0"] 

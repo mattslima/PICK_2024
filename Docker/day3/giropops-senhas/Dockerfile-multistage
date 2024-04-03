@@ -1,0 +1,12 @@
+FROM cgr.dev/chainguard/python:latest-dev as buildando 
+WORKDIR /app
+COPY requirements.txt . 
+RUN pip install --no-cache-dir -r requirements.txt --user
+
+FROM cgr.dev/chainguard/python:latest
+WORKDIR apCOPY --from=builder /home/nonroot/.local/lib/python3.12/site-packages /home/nonroot/.local/lib/python3.12/site-packages
+COPY --from=buildando /home/nonroot/.local/lib/python3.12/site-packages /home/nonroot/.local/lib/python3.12/site-packages
+COPY templates templates/
+COPY static static/
+
+ENTRYPOINT ["flask", "run", "--host=0.0.0.0"] 
