@@ -1,0 +1,25 @@
+docker run -d --name nome_do_container --cpus 2 --memory 64 nome_da_imagem
+
+O --cpus limita a quantidade de cpu que pode ser executado
+O --memory limita a quantidade de memoria que pode executar 
+
+para buscar mais informações pode usar o | grep i <nome da pesquisa> 
+
+
+Docker Compose 
+O Docker Compose é uma forma de rodar vários container a partir de um unico arquivo onde vamos especificar todos os containers da aplicação.
+
+
+Para criar um docker compose precisamos criar um arquivo com o nome docker-compose.yaml
+como exemplo vou usar o abaixo
+
+version: '3'
+services:
+  nginx:
+    image: nginx
+    ports:
+      - "8080:80"
+
+Version -> é a versão do DockerCompose, sempre verifique a sua versão instalada com a da Doc Oficial.
+Services -> é onde vamos indiciar os nossos serviços, no exemplo abaixo temos apenas o bom e velho nginx.
+Nginx -> é o nome do serviço em si, podemos mudar a nosso gosto, e abaixo dele tem as especificações que precisamos.
